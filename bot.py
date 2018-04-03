@@ -4,7 +4,7 @@ import time
 import telepot
 import telepot.namedtuple
 from telepot.loop import MessageLoop
-import io
+from tempfile import TemporaryFile
 
 
 def handle(msg):
@@ -23,8 +23,7 @@ def handle(msg):
     #     print('Received a %s from %s' % (content_type, m.chat))  # m.chat == m.from_
 
     if content_type == 'photo':
-
-        f = io.BytesIO()
+        f = TemporaryFile('wb')
         if len(m.photo) < 2:
             reply = "Photo too small!"
         else:

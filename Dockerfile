@@ -8,5 +8,5 @@ RUN pip install -r /app/requirements.txt
 ADD . /app/
 
 WORKDIR /app/
-CMD python3 bot.py
+CMD python bot.py
 
