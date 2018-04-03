@@ -1,4 +1,4 @@
-FROM digitalgenius/ubuntu-pytorch
+FROM paperspace/fastai:cuda9_pytorch0.3.0
 
 RUN mkdir /app
 
