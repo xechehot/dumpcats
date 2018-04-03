@@ -6,12 +6,15 @@ import telepot.namedtuple
 from telepot.loop import MessageLoop
 from tempfile import TemporaryFile
 
+from fastai.imports import *
 from fastai.transforms import *
 from fastai.conv_learner import *
 from fastai.model import *
+from fastai.dataset import *
+from fastai.sgdr import *
+from fastai.plots import *
 
 import numpy as np
-
 
 
 def open_image(file_object):
@@ -19,7 +22,6 @@ def open_image(file_object):
     img_array = np.asarray(bytearray(file_object.read()), dtype=np.uint8)
     im = cv2.imdecode(img_array, cv2_img_flag).astype(np.float32)/255
     return cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
-
 
 def transformed_image(file_object):
     image = open_image(file_object)
@@ -31,7 +33,7 @@ def transformed_image(file_object):
 def predict(file_object):
     image = transformed_image(file_object)
 
-    tm = torch.load(PATH + 'dogs-cats-torch-model.pt',
+    tm = torch.load('/app/dogs-cats-torch-model.pt',
                     map_location=lambda storage, loc: storage)
     tm.train(False)
 
