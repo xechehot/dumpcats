@@ -20,7 +20,9 @@ def get_handle(predictor):
             if len(m.photo) < 2:
                 reply = "Картинка слишком мала"
             else:
+                bot.sendChatAction(chat_id, 'upload_photo')
                 bot.download_file(m.photo[1].file_id, f)
+               	bot.sendChatAction(chat_id, 'typing')
                 cat, dog = predictor.predict(f)
                 reply = "Котик 🐱: {:.2%}\nСобачка 🐶: {:.2%}".format(cat, dog)
 
