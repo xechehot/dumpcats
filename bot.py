@@ -24,7 +24,7 @@ def get_handle(predictor):
                 cat, dog = predictor.predict(f)
                 reply = "Котик 🐱: {:.2%}\nСобачка 🐶: {:.2%}".format(cat, dog)
 
-            bot.sendMessage(chat_id, reply)
+            bot.sendMessage(chat_id, reply, reply_to_message_id=msg["message_id"])
         else:
             bot.sendMessage(chat_id, "Пришли мне картинку! 🏞")
     return handle
